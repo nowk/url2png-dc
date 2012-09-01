@@ -15,6 +15,12 @@ module Url2PngDc
         url_builder(query_string_builder(url, options), :json)
       end
 
+      def url_2cache(url, options = {})
+        response = ::HTTParty.get(url_2json(url, options))
+        _cache = Cache.new response.body
+        _cache.url || url_2png(url, options)
+      end
+
 
     private
 

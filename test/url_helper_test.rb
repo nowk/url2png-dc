@@ -18,6 +18,19 @@ module Url2PngDc
       Digest::MD5.hexdigest(query_string+Url2PngDc.configuration.url2png_secret)
     end
 
+    def mock_my_httparty!
+      # mocky
+      HTTParty.instance_eval do
+        def get(url)
+          obj = Object.new
+          def obj.body
+              json_payload
+          end
+          obj
+        end
+      end
+    end
+
 
     def test_url_2png_generates_valid_url2png_url_for_png
       token = token(query_string_with_defaults)
@@ -50,6 +63,37 @@ module Url2PngDc
       url   = Sandbox.new.url_2json a_url, {:fullpage => true, :viewport => '1080x720'}
 
       assert_equal "http://beta.url2png.com/v6/#{url2png_apikey}/#{token}/json/?#{query_string_with_options}", url
+    end
+
+
+    def test_url_2cache_returns_a_url2png_cache_url
+      mock_my_httparty!
+
+      token = token(query_string_with_defaults)
+      url   = Sandbox.new.url_2cache a_url
+      assert_match /cache(-[\d]+)\.url2png\.com/, url
+    end
+
+    def test_url_2cache_resolves_to_url_2png_if_cache_url_is_empty_or_nil
+      mock_my_httparty!
+
+      # mocky
+      Url2PngDc::Cache.class_eval do
+        alias_method :url_original, :url
+        def url
+          nil
+        end
+      end
+
+      resolved_url = Sandbox.new.url_2png a_url
+      url          = Sandbox.new.url_2cache a_url
+
+      assert_match resolved_url, url
+
+      # put things back as they were
+      Url2PngDc::Cache.class_eval do
+        alias_method :url, :url_original
+      end
     end
 
 
@@ -95,7 +139,3 @@ module Url2PngDc
   end
 end
 
-
-class Sandbox
-  include Url2PngDc::UrlHelpers
-end
