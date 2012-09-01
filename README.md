@@ -98,7 +98,7 @@ Then you can run it with
 
 ## Copyright
 
-Copyright (c) 2012 Yung Hwa Kwon. See [MIT-LICENSE](blob/master/MIT-LICENSE) for details.
+Copyright (c) 2012 Yung Hwa Kwon. See [MIT-LICENSE](https://github.com/nowk/url2png-dc/blob/master/MIT-LICENSE) for details.
     
 
 ---
