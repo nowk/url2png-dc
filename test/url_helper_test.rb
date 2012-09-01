@@ -18,19 +18,6 @@ module Url2PngDc
       Digest::MD5.hexdigest(query_string+Url2PngDc.configuration.url2png_secret)
     end
 
-    def mock_my_httparty!
-      # mocky
-      HTTParty.instance_eval do
-        def get(url)
-          obj = Object.new
-          def obj.body
-              json_payload
-          end
-          obj
-        end
-      end
-    end
-
 
     def test_url_2png_generates_valid_url2png_url_for_png
       token = token(query_string_with_defaults)

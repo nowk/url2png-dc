@@ -15,8 +15,19 @@ def json_payload
   json
 end
 
+def mock_my_httparty!(and_return_payload = json_payload)
+  # mocky
+  HTTParty.instance_eval do
+    (class << self; self; end).__send__ :define_method, :get do |url|
+      obj = Object.new
+      (class << obj; self; end).__send__ :define_method, :body do
+        and_return_payload
+      end
+      obj
+    end
+  end
+end
 
 class Sandbox
   include Url2PngDc::UrlHelpers
 end
-

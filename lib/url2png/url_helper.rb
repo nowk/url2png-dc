@@ -16,8 +16,7 @@ module Url2PngDc
       end
 
       def url_2cache(url, options = {})
-        response = ::HTTParty.get(url_2json(url, options))
-        _cache = Cache.new response.body
+        _cache = Cache.new url_2json(url, options)
         _cache.url || url_2png(url, options)
       end
 
