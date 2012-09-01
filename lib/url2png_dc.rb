@@ -22,3 +22,5 @@ module Url2PngDc
   end
 end
 
+# TODO replace this, we need to deploy fast at the moment
+ActionView::Base.send(:include, Url2PngDc::UrlHelpers) if defined? ActionView
