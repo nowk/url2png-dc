@@ -26,7 +26,7 @@ You may always require later, as you see fit.
 
 ##Configure
 
-Maybe in an initalizer file or something.
+Maybe in an initalizer file or something. These will be the become the standard defaults, if you do not provide additional options.
 
     Url2PngDc.configure do |config|
       config.url2png_apikey      = ENV['URL2PNG_APIKEY']
@@ -45,7 +45,6 @@ Maybe in an initalizer file or something.
 
 You will have to `require` (maybe, depending on how you set this up) and `include Url2PngDc::UrlHelpers`. That will give you access to 3 methods.
 
-
 Generate the basic URL2PNG url
 
     url_2png "http://twitter.com"
@@ -63,6 +62,16 @@ Generate and `get` the cache url
 The cache url (to my knowledge) is removed on a 30 day basis. 
 
 If anytime the request or the parsing of the payload fails, it defers to the `url_2png` method and returns the basic API url instead.
+
+
+__Each method can take a 2nd Hash `{}` option to override some of the default options for URL generation__
+
+
+    url_2png "http://twitter.com", {:fullpage => false, ...}
+
+
+You can reference [URL2PNG's documentation](http://url2png.com/docs/) for the available options.
+
 
 
 *\*Standard Rails hooks, so you can just plug and play, will be added shortly. But, if you want to get a jump on things, you can view the `quick_start` branch, that does a basic include into the view helpers. __At this point, I've only tested this on Rails 3.__ But there will be a larger range of support once the Rails hooks are written.*
