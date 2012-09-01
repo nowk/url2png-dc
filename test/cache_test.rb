@@ -30,13 +30,20 @@ module Url2PngDc
       assert_nil cache.url
     end
 
-    def test_test_url_returns_nil_if_request_to_url2png_raises_anything
+    def test_url_returns_nil_if_request_to_url2png_raises_anything
       # mocky
       HTTParty.instance_eval do
         def get(url)
           raise StandardError
         end
       end
+
+      cache = Cache.new url_2json_url
+      assert_nil cache.url
+    end
+
+    def test_url_returns_nil_if_json_parse_raises_json_parse_error
+      mock_my_httparty! "this is not json..."
 
       cache = Cache.new url_2json_url
       assert_nil cache.url

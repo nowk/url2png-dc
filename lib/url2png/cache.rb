@@ -19,13 +19,13 @@ module Url2PngDc
       _json = JSON.parse(payload)
       _png = _json['png']
       _png if _png && !_png.empty?
+    rescue
+      nil
     end
 
     def request_to_url2png
       response = ::HTTParty.get(@url_2json_url)
       response.body
-    rescue
-      nil
     end
   end
 end
