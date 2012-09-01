@@ -55,7 +55,7 @@ module Url2PngDc
             options[:viewport] || url2png_conf.viewport_dimensions
         }
 
-        params.sort_by { |o| o[0] }.inject([]) { |memo, obj|
+        params.sort_by { |o| o[0].to_s }.inject([]) { |memo, obj|
           k, v = *obj.map(&:to_s)
           memo << [CGI.escape(k), CGI.escape(v)].join("=") if v && !v.empty?
           memo
