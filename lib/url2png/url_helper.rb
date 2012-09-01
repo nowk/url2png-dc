@@ -1,7 +1,7 @@
 module Url2PngDc
   module UrlHelpers
     def self.included(base)
-      base.class_eval do
+      base.instance_eval do
         include InstanceMethods
       end
     end
