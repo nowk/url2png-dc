@@ -71,7 +71,7 @@ module Url2PngDc
 
       token = token(query_string_with_defaults)
       url   = Sandbox.new.url_2cache a_url
-      assert_match /cache(-[\d]+)\.url2png\.com/, url
+      assert_match(/cache(-[\d]+)\.url2png\.com/, url)
     end
 
     def test_url_2cache_resolves_to_url_2png_if_cache_url_is_empty_or_nil

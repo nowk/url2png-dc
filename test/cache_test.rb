@@ -7,7 +7,7 @@ module Url2PngDc
     #
     def test_url_to_return_cached_url
       cache = Cache.new json_payload
-      assert_match /cache(-[\d]+)\.url2png\.com/, cache.url
+      assert_match(/cache(-[\d]+)\.url2png\.com/, cache.url)
     end
 
     def test_url_returns_nil_if_png_key_is_empty_or_missing
