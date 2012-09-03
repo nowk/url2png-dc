@@ -1,6 +1,6 @@
 module Url2PngDc
   class Configuration
-    URL2PNG_API_URL     = 'http://beta.url2png.com'
+    URL2PNG_API_URL     = 'http://api.url2png.com'
     URL2PNG_API_VERSION = 'v6'
 
     attr_accessor :url2png_apikey

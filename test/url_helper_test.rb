@@ -23,7 +23,7 @@ module Url2PngDc
       token = token(query_string_with_defaults)
       url   = Sandbox.new.url_2png a_url
 
-      assert_equal "http://beta.url2png.com/v6/#{url2png_apikey}/#{token}/png/?#{query_string_with_defaults}", url
+      assert_equal "http://api.url2png.com/v6/#{url2png_apikey}/#{token}/png/?#{query_string_with_defaults}", url
     end
 
     def test_url_2png_generates_valid_url2png_url_for_png_with_options
@@ -32,7 +32,7 @@ module Url2PngDc
       token = token(query_string_with_options)
       url   = Sandbox.new.url_2png a_url, {:fullpage => true, :viewport => '720x480'}
 
-      assert_equal "http://beta.url2png.com/v6/#{url2png_apikey}/#{token}/png/?#{query_string_with_options}", url
+      assert_equal "http://api.url2png.com/v6/#{url2png_apikey}/#{token}/png/?#{query_string_with_options}", url
     end
 
 
@@ -40,7 +40,7 @@ module Url2PngDc
       token = token(query_string_with_defaults)
       url   = Sandbox.new.url_2json a_url
 
-      assert_equal "http://beta.url2png.com/v6/#{url2png_apikey}/#{token}/json/?#{query_string_with_defaults}", url
+      assert_equal "http://api.url2png.com/v6/#{url2png_apikey}/#{token}/json/?#{query_string_with_defaults}", url
     end
 
     def test_url_2json_generates_valid_url2png_url_for_json_with_options
@@ -49,7 +49,7 @@ module Url2PngDc
       token = token(query_string_with_options)
       url   = Sandbox.new.url_2json a_url, {:fullpage => true, :viewport => '1080x720'}
 
-      assert_equal "http://beta.url2png.com/v6/#{url2png_apikey}/#{token}/json/?#{query_string_with_options}", url
+      assert_equal "http://api.url2png.com/v6/#{url2png_apikey}/#{token}/json/?#{query_string_with_options}", url
     end
 
 
