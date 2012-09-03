@@ -17,13 +17,15 @@ end
 
 def mock_my_httparty!(and_return_payload = json_payload)
   # mocky
+  mock_my_response = Class.new do
+    define_method :body do
+      and_return_payload
+    end
+  end
+
   HTTParty.instance_eval do
     (class << self; self; end).__send__ :define_method, :get do |url|
-      obj = Object.new
-      (class << obj; self; end).__send__ :define_method, :body do
-        and_return_payload
-      end
-      obj
+      mock_my_response.new
     end
   end
 end
